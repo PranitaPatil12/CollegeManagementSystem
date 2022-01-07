@@ -1,0 +1,49 @@
+
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Department List</title>
+{% endblock %}
+
+
+
+
+{% block content %}
+<p class="h3" align="center">Student List</p>
+<br><br>
+<table class="table table-striped">
+    <tr>
+        <th>Roll No </th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Marks</th>
+        <th>Action</th>
+        <th>Action</th>
+
+    </tr>
+
+     {% for p1 in stud_object %}
+    <tr>
+        <td>{{p1.Roll_No}}</td>
+        <td>{{p1.Name}}</td>
+        <td>{{p1.department}}</td>
+        <td>{{p1.Marks}}</td>
+        <td>
+            <a href="{% url 'delete_stud' p1.id %}">
+                <button class="btn btn-danger">Delete</button>
+            </a>
+        </td>
+
+        <td>
+            <a href="{% url 'update_stud' p1.id %}">
+                <button class="btn btn-warning">Update</button>
+            </a>
+        </td>
+
+    </tr>
+    {% endfor %}
+</table>
+<a class="btn btn-secondary btn-lg " href="{% url 'stud_add' %}">Add Student</a>
+
+{% endblock %}

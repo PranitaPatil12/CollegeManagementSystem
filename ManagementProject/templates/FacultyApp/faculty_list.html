@@ -1,0 +1,55 @@
+
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Department List</title>
+{% endblock %}
+
+
+
+
+{% block content %}
+<p class="h3" align="center">Faculty List</p>
+<br><br>
+<table class="table table-striped">
+    <tr>
+        <th>Department Name</th>
+        <th>Faculty Name</th>
+        <th>Salary</th>
+        <th>Action</th>
+        <th>Action</th>
+
+    </tr>
+
+    {% for p1 in fact_object %}
+    <tr>
+
+        <td>
+            {% for p in p1.department.all %}
+            {{p.Department_name}}
+            <br>
+            {% endfor %}
+        </td>
+        <td>{{p1.Faculty_Name}}</td>
+        <td>{{p1.Faculty_Salary}}</td>
+        <td>
+            <a href="{% url 'delete_fact' p1.id %}">
+                <button class="btn btn-danger">Delete</button>
+            </a>
+        </td>
+
+        <td>
+            <a href="{% url 'update_fact' p1.id %}">
+                <button class="btn btn-warning">Update</button>
+            </a>
+        </td>
+
+    </tr>
+
+
+    {% endfor %}
+</table>
+<a class="btn btn-secondary btn-lg " href="{% url 'fact_add' %}">Add faculty</a>
+
+{% endblock %}
